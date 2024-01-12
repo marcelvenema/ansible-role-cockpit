@@ -1,0 +1,11 @@
+---
+
+dependencies: []
+
+galaxy_info:
+  author: "Marcel Venema"
+  description: Ansible role for Red Hat Cockpit
+  company: ""
+  license: MIT
+  min_ansible_version: "2.4"
+
