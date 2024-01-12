@@ -30,7 +30,13 @@ Voorbeeld:
      vars:
        action : install
 ```
-
+Bij installatie worden volgende configuratie instellingen gedaan:<br />
+- Tonen banner tekst bij login pagina.<br />
+  Tekst in banner_cockpit.txt bestand in ./media folder.<br/>
+- Aanpassen custom logo bij login pagina.<br/>
+  Logo in media folder, media/logo_cockpit.png bestand.<br/>
+<br/>
+<br/>
 
 
 action: **uninstall**<br/>
@@ -47,20 +53,22 @@ Voorbeeld:
      vars:
        action : uninstall
 ```
-
+<br/>
+<br/>
 
 
 action: **configure**<br/>
 Her-configuratie van RedHat Cockpit. `ROADMAP`.<br/>
 variablen:<br/>
 <kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
+<br/>
+<br/>
 
 
 action: **update**<br/>
 Update van RedHat Cockpit.<br/>
 variablen:<br/>
 <kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
-<br/>
 
 Voorbeeld:
 ```
@@ -71,16 +79,8 @@ Voorbeeld:
      vars:
        action : update
 ```
-
-***
-
-
-Bij installatie worden volgende configuratie instellingen gedaan:<br />
-- Tonen banner tekst bij login pagina.<br />
-  Tekst in banner_cockpit.txt bestand in ./media folder.<br/>
-- Aanpassen custom logo bij login pagina.<br/>
-  Logo in media folder, media/logo_cockpit.png bestand.<br/>
-
+<br/>
+<br/>
 
 ***
 
@@ -94,9 +94,7 @@ Bij installatie worden volgende configuratie instellingen gedaan:<br />
   Visie en toekomstige ontwikkelingen.<br/>
   Zie [roadmap](ROADMAP.md)<br/>
 
-
 ***
-
 
 ## Voorbereidingen
 (geen).<br/>
@@ -108,19 +106,6 @@ Afhankelijkheden zijn benoemd in het **requirements.yml** bestand. Gebruik `ansi
 
 ## Installatie en configuratie
 Installatie via action 'install'. (Her-)configuratie via action 'configure'.<br/>
-Voorbeeld voor installatie RedHat Cockpit:
-
-```
----
-
-- hosts: lab_server
-  vars:
-  roles:
-    - role: cockpit
-      vars:
-        action : install
-
-```
 
 
 ## Overige informatie
