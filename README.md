@@ -2,7 +2,7 @@
 
 <table border="0">
   <tr>
-    <td width="160px"><img src="media/icon_cockpit.png" align="left" height="128" width="128" /></td>
+    <td width="160px" valign="top"><img src="media/icon_cockpit.png" align="left" height="128" width="128" /></td>
     <td>Ansible role voor installatie en configuratie van Redhat Cockpit, een webbased UI voor het beheer van Redhat servers.<br/> 
         Indien gedetecteerd, worden plugins voor Podman en KVM virtuele machines automatisch geinstalleerd.<br/>
         De UI is na installatie bereikbaar via `https://<servernaam/ip>:9090`<br/>
@@ -21,6 +21,17 @@ Installatie van laatste Cockpit versie. Basis configuratie van Cockpit.<br/>
 variablen:<br/>
 <kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
 
+Voorbeeld:
+```
+- name: Install and configure RedHat Cockpit
+  hosts: localhost
+  roles:
+   - role: cockpit
+     vars:
+      action        : install
+
+```
+
 
 action: **uninstall**<br/>
 De-installatie van RedHat Cockpit. Verwijderen configuratie folder.<br/>
@@ -29,7 +40,7 @@ variablen:<br/>
 
 
 action: **configure**<br/>
-Her-configuratie van RedHat Cockpit. ROADMAP.<br/>
+Her-configuratie van RedHat Cockpit. `ROADMAP`.<br/>
 variablen:<br/>
 <kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
 
@@ -39,6 +50,11 @@ Update van RedHat Cockpit.<br/>
 variablen:<br/>
 <kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
 <br/>
+
+
+
+
+
 
 
 Bij installatie worden volgende configuratie instellingen gedaan:<br />
