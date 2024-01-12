@@ -28,15 +28,26 @@ Voorbeeld:
   roles:
    - role: cockpit
      vars:
-      action        : install
-
+       action : install
 ```
+
 
 
 action: **uninstall**<br/>
 De-installatie van RedHat Cockpit. Verwijderen configuratie folder.<br/>
 variablen:<br/>
 <kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
+
+Voorbeeld:
+```
+- name: De-install RedHat Cockpit
+  hosts: localhost
+  roles:
+   - role: cockpit
+     vars:
+       action : uninstall
+```
+
 
 
 action: **configure**<br/>
@@ -51,10 +62,17 @@ variablen:<br/>
 <kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
 <br/>
 
+Voorbeeld:
+```
+- name: Update RedHat Cockpit
+  hosts: localhost
+  roles:
+   - role: cockpit
+     vars:
+       action : update
+```
 
-
-
-
+***
 
 
 Bij installatie worden volgende configuratie instellingen gedaan:<br />
