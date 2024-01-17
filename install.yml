@@ -1,4 +1,4 @@
-- name: Install and configure RedHat Cockpit
+- name: Install and configure RedHat Cockpit (no roles)
   hosts: localhost
   tasks:
 
