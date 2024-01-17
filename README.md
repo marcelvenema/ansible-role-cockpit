@@ -108,7 +108,7 @@ Indien deze role in andere playbooks of Ansible projecten wordt gebruikt, dient 
 <br/>
 
 ## Installatie en configuratie
-Installatie via de action variabele 'install'. (Her-)configuratie via de action variabele 'configure'.<br/>
+Installatie via de action variabele <kbd>install</kbd>. (Her-)configuratie via de action variabele <kbd>configure</kbd>.<br/>
 
 Bij gebruik van deze rol in andere playbooks of Ansible projecten:<br/>
 ```
