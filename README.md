@@ -102,8 +102,10 @@ Voorbeeld:
 
 ## Afhankelijkheden
 Afhankelijkheden zijn benoemd in het **requirements.yml** bestand. Gebruik `ansible-galaxy install ./requirements.yml --force` voor installatie.<br/>
-Indien deze role in andere playbooks of Ansible projecten wordt gebruikt, dient de URL van deze rol te worden toegevoegd aan het requirements.yml bestand. Via bovenstaand command wordt de rol in de juiste folderstructuur geplaatst.<br/>
 
+
+Indien deze role in andere playbooks of Ansible projecten wordt gebruikt, dient de URL van deze rol te worden toegevoegd aan het `requirements.yml` bestand. Via bovenstaand command wordt de rol dan in de juiste folderstructuur geplaatst.<br/>
+<br/>
 
 ## Installatie en configuratie
 Installatie via de action variabele 'install'. (Her-)configuratie via de action variabele 'configure'.<br/>
