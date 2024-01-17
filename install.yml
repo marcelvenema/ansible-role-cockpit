@@ -1,0 +1,6 @@
+- name: Install and configure RedHat Cockpit
+  hosts: localhost
+  roles:
+   - role: cockpit
+     vars:
+       action : install
