@@ -1,0 +1,34 @@
+---
+
+#########################################################
+## Get status                                          ##
+#########################################################
+# If action variable is not defined, gather status of the service
+# If service not installed, set action to install. 
+# If the service is not started, set action to start.
+
+# Gather installed packages
+- name: Gather installed packages
+  ansible.builtin.package_facts:
+    manager: auto
+
+# Check if cockpit service is running
+- name: Check if Cockpit service is running
+  ansible.builtin.systemd:
+    name: cockpit.socket
+  register: cockpit_service_status
+  changed_when: false
+  failed_when: false
+  ignore_errors: true
+
+# Set action variable when service is not running
+- name: Set action variable
+  set_fact:
+    action: "start"
+  when: cockpit_service_status.status != 'running'
+
+# Set action to install if cockpit is not installed
+- name: Set action variable
+  set_fact:
+    action: "install"
+  when: "'cockpit' not in ansible_facts.packages"

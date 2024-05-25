@@ -1,9 +1,9 @@
 ---
 
-- name: Set wait
-  ansible.builtin.set_fact:
-    wait: false
-  when: wait is not defined
+# If action variable is not defined, gather status of the service and set action variable  
+- name: Determine action variable status
+  ansible.builtin.include_tasks: get_status.yml
+  when: action is not defined
 
 - name: Verify variable input
   ansible.builtin.assert:
