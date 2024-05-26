@@ -1,5 +1,10 @@
 ---
 
+# Debug action variable
+- name: Debug action variable
+  debug:
+    var: action
+
 # If action variable is not defined, gather status of the service and set action variable  
 - name: Determine action variable status
   ansible.builtin.include_tasks: get_status.yml
@@ -27,3 +32,11 @@
 - name: Update
   ansible.builtin.include_tasks: update.yml
   when: action == "update"
+
+- name: Start
+  ansible.builtin.include_tasks: start.yml
+  when: action == "start"
+
+- name: Stop
+  ansible.builtin.include_tasks: stop.yml
+  when: action == "stop"
