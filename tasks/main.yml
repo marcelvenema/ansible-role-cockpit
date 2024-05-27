@@ -1,9 +1,9 @@
 ---
 
-# Debug action variable
-- name: Debug action variable
+# Show message
+- name: Show Information message
   debug:
-    var: action
+    msg: "Starting role {{ role_name }}... action: {{ action }}."
 
 # If action variable is not defined, gather status of the service and set action variable  
 - name: Determine action variable status
@@ -17,26 +17,28 @@
     fail_msg: "Please provide 'action' {{ actions }}"
     quiet: true
 
-- name: Install
+# -------------------------------------------------------
+
+- name: Install role
   ansible.builtin.include_tasks: install.yml
   when: action == "install"
 
-- name: Uninstall
+- name: Uninstall role
   ansible.builtin.include_tasks: uninstall.yml
   when: action == "uninstall"
 
-- name: Configure
+- name: Configure role
   ansible.builtin.include_tasks: configure.yml
   when: action == "configure"
 
-- name: Update
+- name: Update role
   ansible.builtin.include_tasks: update.yml
   when: action == "update"
 
-- name: Start
+- name: Start role
   ansible.builtin.include_tasks: start.yml
   when: action == "start"
 
-- name: Stop
+- name: Stop role
   ansible.builtin.include_tasks: stop.yml
   when: action == "stop"
