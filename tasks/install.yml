@@ -4,6 +4,11 @@
 ## Pre-installation                                    ##
 #########################################################
 
+# Gather installed packages
+- name: Gather installed packages
+  ansible.builtin.package_facts:
+    manager: auto
+
 # Check if cockpit service is running
 - name: Check if Cockpit service is running
   ansible.builtin.systemd:
