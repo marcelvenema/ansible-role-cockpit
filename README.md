@@ -19,7 +19,8 @@
 action: **install**<br/>
 Installatie van laatste Cockpit versie. Basis configuratie van Cockpit.<br/>
 variablen:<br/>
-<kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
+<kbd>cockpit_branding_logo</kbd> (optioneel) : Custom logo bij login pagina.<br/>
+<kbd>cockpit_branding_banner</kbd> (optioneel) : Banner tekstbestand bij login pagina.<br/>
 
 Voorbeeld:
 ```
