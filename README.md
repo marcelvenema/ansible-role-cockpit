@@ -31,11 +31,6 @@ Voorbeeld:
      vars:
        action : install
 ```
-Bij installatie worden volgende configuratie instellingen gedaan:<br />
-- Tonen banner tekst bij login pagina.<br />
-  Tekst in banner_cockpit.txt bestand in ./media folder.<br/>
-- Aanpassen custom logo bij login pagina.<br/>
-  Logo in media folder, media/logo_cockpit.png bestand.<br/>
 <br/>
 <br/>
 
