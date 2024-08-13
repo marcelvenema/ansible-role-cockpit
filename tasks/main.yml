@@ -1,7 +1,7 @@
 ---
 
 # Show message
-- name: Show Information message
+- name: Show action message
   debug:
     msg: "Starting role {{ role_name }}... action: {{ action }}."
 
@@ -10,7 +10,7 @@
   ansible.builtin.include_tasks: get_status.yml
   when: action is not defined
 
-- name: Verify variable input
+- name: "Verify valid action {{ action }}..."
   ansible.builtin.assert:
     that:
       - action is defined and action in actions
@@ -19,26 +19,26 @@
 
 # -------------------------------------------------------
 
-- name: Install role
+- name: Start install action...
   ansible.builtin.include_tasks: install.yml
   when: action == "install"
 
-- name: Uninstall role
+- name: Start uninstall action...
   ansible.builtin.include_tasks: uninstall.yml
   when: action == "uninstall"
 
-- name: Configure role
+- name: Start configure action...
   ansible.builtin.include_tasks: configure.yml
   when: action == "configure"
 
-- name: Update role
+- name: Start update action...
   ansible.builtin.include_tasks: update.yml
   when: action == "update"
 
-- name: Start role
+- name: Start start action...
   ansible.builtin.include_tasks: start.yml
   when: action == "start"
 
-- name: Stop role
+- name: Start stop action...
   ansible.builtin.include_tasks: stop.yml
   when: action == "stop"

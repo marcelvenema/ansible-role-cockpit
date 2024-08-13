@@ -1,14 +1,14 @@
 ---
 
 #########################################################
-## Configuration                                       ##
+## Cockpit Configuration                               ##
 #########################################################
 
 #########################################################
 ## Branding                                            ##
 #########################################################
 
-- name: Add custom logo to Cockpit login page
+- name: Add custom logo to Cockpit login page...
   when: cockpit_branding_logo is defined
   block: 
 
@@ -21,41 +21,40 @@
       when: ansible_os_family == 'RedHat'
    
     # Copy custom logo to Cockpit branding folder
-    - name: Copy custom logo to Cockpit branding folder
+    - name: Copy custom logo to Cockpit branding folder...
       ansible.builtin.copy:
         src: "{{ cockpit_branding_logo }}"
         dest: /usr/share/cockpit/branding/rhel/logo.png
         mode: '0644'
       when: ansible_os_family == 'RedHat'
 
-- name: Add custom banner to Cockpit login page
+- name: Add custom banner to Cockpit login page...
   when: cockpit_branding_banner is defined
   block: 
     
     # Copy banner to Cockpit configuration folder
-    - name: Copy banner to Cockpit configuration folder
+    - name: Copy banner to Cockpit configuration folder...
       ansible.builtin.copy:
         src: "{{ cockpit_banding_banner }}"
         dest: /etc/issue.cockpit
         mode: '0644'
 
     # Ensure the cockpit.conf file exists
-    - name: Ensure the cockpit.conf file exists
+    - name: Ensure the cockpit.conf file exists...
       ansible.builtin.file:
         path: /etc/cockpit/cockpit.conf
         state: touch
 
     # Ensure banner= directive is present in Cockpit configuration file
-    - name: Ensure banner= directive is present in Cockpit configuration file
+    - name: Ensure banner= directive is present in Cockpit configuration file...
       ansible.builtin.blockinfile:
         path: /etc/cockpit/cockpit.conf
         block: |
           [Session]
           Banner=/etc/issue.cockpit
 
-
 # Restart Cockpit service
-- name: Restart Cockpit service
+- name: Restart Cockpit service...
   ansible.builtin.systemd:
     name: cockpit.socket
     state: restarted

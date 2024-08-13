@@ -5,12 +5,12 @@
 #########################################################
 
 # Gather installed packages
-- name: Gather installed packages
+- name: Gather installed packages...
   ansible.builtin.package_facts:
     manager: auto
 
 # Check if cockpit service is running
-- name: Check if Cockpit service is running
+- name: Check if Cockpit service is running...
   ansible.builtin.systemd:
     name: cockpit.socket
   register: cockpit_service_status
@@ -19,7 +19,7 @@
   ignore_errors: true
 
 # Run uninstall if service is running
-- name: Run uninstall playbook if Cockpit service is running
+- name: Run uninstall task if Cockpit service is running...
   ansible.builtin.include_tasks: uninstall.yml
   when: cockpit_service_status.status == 'running'
 
@@ -28,20 +28,20 @@
 #########################################################
 
 # Install cockpit packages
-- name: Install Cockpit packages
+- name: Install Cockpit packages...
   ansible.builtin.package:
     name:
       - cockpit
     state: present
 
 # Check if Podman is installed
-- name: Check if Podman is installed
+- name: Check if Podman is installed...
   ansible.builtin.command: podman --version
   register: podman_version_output
   ignore_errors: true
 
 # Install Cockpit Podman packages
-- name: Install Cockpit Podman packages
+- name: Install Cockpit Podman packages...
   ansible.builtin.package:
     name:
       - cockpit-podman
@@ -49,7 +49,7 @@
   when: podman_version_output
 
 # Install Cockpit KVM packages
-- name: Install Cockpit KVM packages
+- name: Install Cockpit KVM packages...
   ansible.builtin.package:
     name:
       - cockpit-machines
@@ -57,14 +57,14 @@
   when: ansible_virtualization_role != 'guest'
 
 # Enable Cockpit service
-- name: Enable Cockpit service
+- name: Enable Cockpit service...
   ansible.builtin.systemd:
     name: cockpit.socket
     state: started
     enabled: true
 
 # Enable Cockpit firewall
-- name: Allow Cockpit through firewall
+- name: Allow Cockpit through firewall..
   ansible.posix.firewalld:
     service: cockpit
     permanent: true
@@ -76,7 +76,7 @@
 #########################################################
 
 # Configure Cockpit
-- name: Configure
+- name: Start configure task...
   ansible.builtin.include_tasks: configure.yml
 
 #########################################################
