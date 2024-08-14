@@ -4,8 +4,7 @@ dependencies: []
 
 galaxy_info:
   author: "Marcel Venema"
-  description: Ansible role for Red Hat Cockpit
+  description: "Ansible role for RedHat Cockpit server management gui"
   company: ""
   license: MIT
   min_ansible_version: "2.4"
-

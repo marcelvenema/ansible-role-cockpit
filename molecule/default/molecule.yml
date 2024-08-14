@@ -1,0 +1,15 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: podman
+platforms:
+  - name: instance
+    image: "rockylinux/rockylinux:9"
+    command: /usr/sbin/init
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+scenario:
+  name: default

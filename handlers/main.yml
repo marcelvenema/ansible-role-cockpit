@@ -1,0 +1,8 @@
+---
+# Handlers for Cockpit role
+
+- name: Restart Cockpit
+  ansible.builtin.systemd:
+    name: cockpit
+    state: restarted
+  notify: reload cockpit
