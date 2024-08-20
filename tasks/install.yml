@@ -1,7 +1,7 @@
 ---
 
 #########################################################
-## Pre-installation                                    ##
+## Gather information                                  ##
 #########################################################
 
 # Gather installed packages
@@ -9,8 +9,13 @@
   ansible.builtin.package_facts:
     manager: auto
 
+# Set action_parameters variable to pameter list in actions where key is equal to action
+- name: "Gather variables for action ({{ action }})..."
+  set_fact:
+    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters }}"
+
 # Check if cockpit service is running
-- name: Check if Cockpit service is running...
+- name: Register Cockpit service...
   ansible.builtin.systemd:
     name: cockpit.socket
   register: cockpit_service_status
@@ -18,10 +23,21 @@
   failed_when: false
   ignore_errors: true
 
+#########################################################
+## Uninstall                                           ##
+#########################################################
+
 # Run uninstall if service is running
 - name: Run uninstall task if Cockpit service is running...
   ansible.builtin.include_tasks: uninstall.yml
-  when: cockpit_service_status.status == 'running'
+  when: 
+    - '"cockpit" in ansible_facts.packages'
+    - uninstall is defined
+    - uninstall == true
+
+#########################################################
+## Pre-installation                                    ##
+#########################################################
 
 #########################################################
 ## Installation                                        ##
@@ -78,6 +94,8 @@
 # Configure Cockpit
 - name: Start configure task...
   ansible.builtin.include_tasks: configure.yml
+  vars:
+    action: "configure"
 
 #########################################################
 ## Post-install                                        ##

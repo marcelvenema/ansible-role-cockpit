@@ -1,8 +1,13 @@
 ---
 
 #########################################################
-## Cockpit Configuration                               ##
+## Gather information                                  ##
 #########################################################
+
+# Set action_parameters variable to pameter list in actions where key is equal to action
+- name: "Gather variables for action ({{ action }})..."
+  set_fact:
+    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters }}"
 
 #########################################################
 ## Branding                                            ##
@@ -35,7 +40,7 @@
     # Copy banner to Cockpit configuration folder
     - name: Copy banner to Cockpit configuration folder...
       ansible.builtin.copy:
-        src: "{{ cockpit_banding_banner }}"
+        src: "{{ cockpit_branding_banner }}"
         dest: /etc/issue.cockpit
         mode: '0644'
 
@@ -53,6 +58,10 @@
         block: |
           [Session]
           Banner=/etc/issue.cockpit
+
+#########################################################
+## Post-configuration                                  ##
+#########################################################
 
 # Restart Cockpit service
 - name: Restart Cockpit service...
