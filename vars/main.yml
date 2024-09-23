@@ -1,26 +1,30 @@
 ---
 
 actions:
-  - install: 
+  - install:
       description: "Installatie van laatste Cockpit versie. Basis configuratie van Cockpit."
       icon: "media/icon_cockpit.png"
       parameters:
-        - uninstall
-        - cockpit_branding_logo
-        - cockpit_branding_banner
+        - uninstall:
+            description: ""
+        - cockpit_branding_logo:
+            description: "URL naar logo voor branding van Cockpit."
+        - cockpit_branding_banner:
+            description: "URL naar banner voor branding van Cockpit."
 
-  - uninstall: 
+  - uninstall:
       description: "De-installatie van RedHat Cockpit. Verwijderen configuratie folder."
       icon: "media/icon_cockpit.png"
 
-  - configure: 
+  - configure:
       description: "Her-configuratie van RedHat Cockpit."
       icon: "media/icon_cockpit.png"
       parameters:
-        - cockpit_branding_logo
-        - cockpit_branding_banner
+        - cockpit_branding_logo:
+            description: "URL naar logo voor branding van Cockpit."
+        - cockpit_branding_banner:
+            description: "URL naar banner"
 
-  - update: 
+  - update:
       description: "Update van RedHat Cockpit."
       icon: "media/icon_cockpit.png"
-
