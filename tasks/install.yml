@@ -100,3 +100,9 @@
 #########################################################
 ## Post-install                                        ##
 #########################################################
+
+# Unset variables
+- name: Unset variables...
+  ansible.builtin.set_fact:
+    cockpit_service_status: null
+    podman_version_output: null

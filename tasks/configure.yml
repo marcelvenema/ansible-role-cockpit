@@ -68,3 +68,10 @@
   ansible.builtin.systemd:
     name: cockpit.socket
     state: restarted
+
+# Unset variables
+- name: Unset variables...
+  ansible.builtin.set_fact:
+    action_parameters: null
+    cockpit_branding_logo: null
+    cockpit_branding_banner: null
