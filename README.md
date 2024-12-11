@@ -3,11 +3,11 @@
 <table border="0">
   <tr>
     <td width="160px" valign="top"><img src="media/icon_cockpit.png" align="left" height="128" width="128" /></td>
-    <td>Ansible role voor installatie en configuratie van Redhat Cockpit, een webbased UI voor het beheer van Redhat servers.<br/> 
-        Indien gedetecteerd, worden plugins voor Podman en KVM virtuele machines automatisch geinstalleerd.<br/>
-        De UI is na installatie bereikbaar via `https://<servernaam/ip>:9090`<br/>
+    <td>Ansible role for installation and configuration of Redhat Cockpit, a web-based UI for managing Redhat servers.<br/> 
+        If detected, plugins for Podman and KVM virtual machines are automatically installed.<br/>
+        The UI is accessible after installation via `https://<servername/ip>:9090`<br/>
         <br/>
-        Website leverancier: `https://project-cockpit.org`<br/>
+        Official website: `https://project-cockpit.org`<br/>
         <br/>
     </td>
   </tr>

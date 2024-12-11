@@ -1,30 +1,55 @@
 ---
 
 actions:
-  - install:
-      description: "Installatie van laatste Cockpit versie. Basis configuratie van Cockpit."
-      icon: "media/icon_cockpit.png"
-      parameters:
-        - uninstall:
-            description: ""
-        - cockpit_branding_logo:
-            description: "URL naar logo voor branding van Cockpit."
-        - cockpit_branding_banner:
-            description: "URL naar banner voor branding van Cockpit."
+    - install:
+        description: "Install the latest version of Cockpit and perform basic configuration."
+        icon: "media/icon_cockpit.png"
+        parameters:
+            - uninstall:
+                description: "Flag to uninstall existing Cockpit before installation."
+            - cockpit_branding_logo:
+                description: "URL to the logo for Cockpit branding."
+            - cockpit_branding_banner:
+                description: "URL to the banner for Cockpit branding."
+            - enable_services:
+                description: "List of services to enable after installation."
+            - firewall_rules:
+                description: "Firewall rules to apply for Cockpit access."
 
-  - uninstall:
-      description: "De-installatie van RedHat Cockpit. Verwijderen configuratie folder."
-      icon: "media/icon_cockpit.png"
+    - uninstall:
+        description: "Uninstall RedHat Cockpit and remove its configuration folder."
+        icon: "media/icon_cockpit.png"
+        parameters:
+            - remove_data:
+                description: "Flag to remove all Cockpit data during uninstallation."
 
-  - configure:
-      description: "Her-configuratie van RedHat Cockpit."
-      icon: "media/icon_cockpit.png"
-      parameters:
-        - cockpit_branding_logo:
-            description: "URL naar logo voor branding van Cockpit."
-        - cockpit_branding_banner:
-            description: "URL naar banner"
+    - configure:
+        description: "Reconfigure RedHat Cockpit settings."
+        icon: "media/icon_cockpit.png"
+        parameters:
+            - cockpit_branding_logo:
+                description: "URL to the logo for Cockpit branding."
+            - cockpit_branding_banner:
+                description: "URL to the banner for Cockpit branding."
+            - enable_services:
+                description: "List of services to enable during reconfiguration."
+            - firewall_rules:
+                description: "Firewall rules to apply for Cockpit access."
 
-  - update:
-      description: "Update van RedHat Cockpit."
-      icon: "media/icon_cockpit.png"
+    - start:
+        description: "Start the RedHat Cockpit service."
+        icon: "media/icon_start.png"
+        parameters:
+
+    - stop:
+        description: "Stop the RedHat Cockpit service."
+        icon: "media/icon_stop.png"
+
+    - update:
+        description: "Update RedHat Cockpit to the latest version."
+        icon: "media/icon_cockpit.png"
+        parameters:
+            - backup_config:
+                description: "Flag to backup existing configuration before updating."
+            - notify_users:
+                description: "Flag to notify users about the update."

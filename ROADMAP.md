@@ -1,8 +1,8 @@
-# Visie
+# Vision
 
 <img src="media/icon_cockpit.png" align="left" height="128" width="128" />
-Ansible role voor installatie en configuratie van Redhat Cockpit, een webbased UI voor het beheer van Redhat servers.<br/> 
-Indien gedetecteerd, worden plugins voor Podman en KVM virtuele machines automatisch geinstalleerd.<br/>
+Ansible role for the installation and configuration of Redhat Cockpit, a web-based UI for managing Redhat servers.<br/> 
+If detected, plugins for Podman and KVM virtual machines are automatically installed.<br/>
 <br/>
 <br/>
 <br/>
@@ -12,4 +12,5 @@ Indien gedetecteerd, worden plugins voor Podman en KVM virtuele machines automat
 ***
 
 # Roadmap
+
 
