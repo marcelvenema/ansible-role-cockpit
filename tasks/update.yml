@@ -1,10 +1,9 @@
----
 
-#########################################################
-## Update                                              ##
-#########################################################
+##############################
+## Update                   ##
+##############################
 
-- name: Upgrade Cockpit package...
+- name: Upgrade Cockpit package to the latest version...
   ansible.builtin.package:
     name: "cockpit"
     state: latest

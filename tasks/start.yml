@@ -1,4 +1,7 @@
----
+
+##############################
+## Start                    ##
+##############################
 
 # Show information message
 - name: Information message

@@ -1,5 +1,3 @@
----
-# Handlers for Cockpit role
 
 - name: Restart Cockpit
   ansible.builtin.systemd:

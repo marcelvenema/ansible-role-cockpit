@@ -4,8 +4,8 @@
 ## Gather information                                  ##
 #########################################################
 
-# Set action_parameters variable to pameter list in actions where key is equal to action
-- name: "Gather variables for action ({{ action }})..."
+# Set `action_parameters` variable to parameter list in actions where key is equal to `action`
+- name: "Gather action parameters for action ({{ action }})..."
   set_fact:
     action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters }}"
 
@@ -20,7 +20,7 @@
     # Copy branding from template to folder
     - name: Configure Cockpit branding...
       ansible.builtin.template:
-        src: branding.j2.css
+        src: branding.css.j2
         dest: "/usr/share/cockpit/branding/rhel/branding.css"
         mode: '0644'
       when: ansible_os_family == 'RedHat'
@@ -29,7 +29,7 @@
     - name: Copy custom logo to Cockpit branding folder...
       ansible.builtin.copy:
         src: "{{ cockpit_branding_logo }}"
-        dest: /usr/share/cockpit/branding/rhel/logo.png
+        dest: "/usr/share/cockpit/branding/rhel/logo.png"
         mode: '0644'
       when: ansible_os_family == 'RedHat'
 
@@ -41,13 +41,13 @@
     - name: Copy banner to Cockpit configuration folder...
       ansible.builtin.copy:
         src: "{{ cockpit_branding_banner }}"
-        dest: /etc/issue.cockpit
+        dest: "/etc/issue.cockpit"
         mode: '0644'
 
     # Ensure the cockpit.conf file exists
     - name: Ensure the cockpit.conf file exists...
       ansible.builtin.file:
-        path: /etc/cockpit/cockpit.conf
+        path: "/etc/cockpit/cockpit.conf"
         state: touch
         mode: '0644'
 
