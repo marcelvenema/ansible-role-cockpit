@@ -1,6 +1,6 @@
-# RedHat Cockpit
+# role: RedHat Cockpit
 
-| ![Cockpit Icon](media/icon_cockpit.png) | Ansible role for installation and configuration of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://<servername/ip>:9090`<br/><br/>Official website: `https://project-cockpit.org`
+| ![Cockpit Icon](media/icon_cockpit.png) | Ansible role for installation and configuration of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://<servername/ip>:9090`<br><br>Official website: `https://project-cockpit.org`
 |---|---|
 
 # Actions:
@@ -10,6 +10,7 @@ Installation of the latest Cockpit version. Basic configuration of Cockpit.<br>
 variables:<br>
 <kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br>
 <kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.<br>
+<kbd>uninstall</kbd> (optional) : Uninstall existing Cockpit instance before installation.<br>
 
 ```
 - name: Install and configure RedHat Cockpit
@@ -24,7 +25,7 @@ variables:<br>
 action: **uninstall**<br>
 Uninstallation of RedHat Cockpit. Removal of configuration folder.<br>
 variables:<br>
-<kbd>(none)</kbd> : No variables required.<br>
+<kbd>remove_data</kbd> (optional) : Remove all Cockpit data during uninstallation.<br>
 
 ```
 - name: Uninstall RedHat Cockpit
@@ -38,12 +39,14 @@ variables:<br>
 action: **configure**<br>
 Reconfiguration of RedHat Cockpit. `ROADMAP`.<br>
 variables:<br>
-<kbd>(none)</kbd> : No variables required.<br>
+<kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br>
+<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.<br>
 
 action: **update**<br>
 Update of RedHat Cockpit.<br>
 variables:<br>
-<kbd>(none)</kbd> : No variables required.
+<kbd>backup_config</kbd> (optional) : true/false. Backup configuration before update.<br>
+<kbd>notify_users</kbd> (optional) : true/false. Notify users before update.<br>
 
 ```
 - name: Update RedHat Cockpit
