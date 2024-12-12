@@ -1,6 +1,5 @@
 # RedHat Cockpit
 
-
 | ![Cockpit Icon](media/icon_cockpit.png) | Ansible role for installation and configuration of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://<servername/ip>:9090`<br/><br/>Official website: `https://project-cockpit.org`
 |---|---|
 
@@ -8,11 +7,10 @@
 
 
 action: **install**
-
 Installation of the latest Cockpit version. Basic configuration of Cockpit.
-variables:<br/>
-<kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br/>
-<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.<br/>
+variables:
+<kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.
+<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.
 
 ```
 - name: Install and configure RedHat Cockpit
@@ -22,12 +20,12 @@ variables:<br/>
      vars:
        action : install
 ```
-<br/>
+
 
 action: **uninstall**
-Uninstallation of RedHat Cockpit. Removal of configuration folder.<br/>
-variables:<br/>
-<kbd>(none)</kbd> : No variables required.<br/>
+Uninstallation of RedHat Cockpit. Removal of configuration folder.
+variables:
+<kbd>(none)</kbd> : No variables required.
 
 ```
 - name: Uninstall RedHat Cockpit
@@ -41,15 +39,15 @@ variables:<br/>
 
 
 action: **configure**<br/>
-Reconfiguration of RedHat Cockpit. `ROADMAP`.<br/>
+Reconfiguration of RedHat Cockpit. `ROADMAP`.
 variables:<br/>
-<kbd>(none)</kbd> : No variables required.<br/>
+<kbd>(none)</kbd> : No variables required.
 
 
 action: **update**<br/>
 Update of RedHat Cockpit.<br/>
 variables:<br/>
-<kbd>(none)</kbd> : No variables required.<br/>
+<kbd>(none)</kbd> : No variables required.
 
 ```
 - name: Update RedHat Cockpit
@@ -64,31 +62,30 @@ variables:<br/>
 
 - **changelog**<br/>
   Change log.<br/>
-  See [changelog](CHANGELOG.md)<br/>
+  See [changelog](CHANGELOG.md)
 
 
 
 - **roadmap**<br/>
-  Vision and future developments.<br/>
-  See [roadmap](ROADMAP.md)<br/>
+  Vision and future developments.
+  See [roadmap](ROADMAP.md)
 
 ***
 
 
 ## Preparations
-(none).<br/>
+(none).
 
 
 ## Dependencies
-Dependencies are listed in the **requirements.yml** file. Use `ansible-galaxy install ./requirements.yml --force` for installation.<br/>
-
-If this role is used in other playbooks or Ansible projects, the URL of this role must be added to the `requirements.yml` file. Using the above command, the role will be placed in the correct folder structure.<br/>
+Dependencies are listed in the **requirements.yml** file. Use `ansible-galaxy install ./requirements.yml --force` for installation.
+If this role is used in other playbooks or Ansible projects, the URL of this role must be added to the `requirements.yml` file. Using the above command, the role will be placed in the correct folder structure.
 
 
 ## Installation and configuration
-Installation via the action variable <kbd>install</kbd>. (Re-)configuration via the action variable <kbd>configure</kbd>.<br/>
+Installation via the action variable <kbd>install</kbd>. (Re-)configuration via the action variable <kbd>configure</kbd>.
 
-When using this role in other playbooks or Ansible projects:<br/>
+When using this role in other playbooks or Ansible projects:
 ```
 - name: Install and configure RedHat Cockpit
   hosts: localhost
@@ -98,7 +95,7 @@ When using this role in other playbooks or Ansible projects:<br/>
        action : install
 ```
 
-When used as a stand-alone Ansible project:<br/>
+When used as a stand-alone Ansible project:
 ```
 - name: Install and configure RedHat Cockpit
   hosts: localhost
