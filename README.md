@@ -5,12 +5,11 @@
 
 # Actions:
 
-action: **install**
-Installation of the latest Cockpit version. Basic configuration of Cockpit.
-variables:
-<kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.
-<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.  
-
+action: **install**<br>
+Installation of the latest Cockpit version. Basic configuration of Cockpit.<br>
+variables:<br>
+<kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br>
+<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.<br>
 
 ```
 - name: Install and configure RedHat Cockpit
@@ -22,10 +21,10 @@ variables:
 ```
 
 
-action: **uninstall**
-Uninstallation of RedHat Cockpit. Removal of configuration folder.
-variables:
-<kbd>(none)</kbd> : No variables required.
+action: **uninstall**<br>
+Uninstallation of RedHat Cockpit. Removal of configuration folder.<br>
+variables:<br>
+<kbd>(none)</kbd> : No variables required.<br>
 
 ```
 - name: Uninstall RedHat Cockpit
@@ -36,17 +35,14 @@ variables:
        action : uninstall
 ```
 
+action: **configure**<br>
+Reconfiguration of RedHat Cockpit. `ROADMAP`.<br>
+variables:<br>
+<kbd>(none)</kbd> : No variables required.<br>
 
-
-action: **configure**<br/>
-Reconfiguration of RedHat Cockpit. `ROADMAP`.
-variables:<br/>
-<kbd>(none)</kbd> : No variables required.
-
-
-action: **update**<br/>
-Update of RedHat Cockpit.<br/>
-variables:<br/>
+action: **update**<br>
+Update of RedHat Cockpit.<br>
+variables:<br>
 <kbd>(none)</kbd> : No variables required.
 
 ```
@@ -60,25 +56,23 @@ variables:<br/>
 
 ***
 
-- **changelog**<br/>
-  Change log.<br/>
+- **changelog**<br>
+  Change log.
   See [changelog](CHANGELOG.md)
 
-
-
-- **roadmap**<br/>
+- **roadmap**<br>
   Vision and future developments.
   See [roadmap](ROADMAP.md)
 
 ***
-
 
 ## Preparations
 (none).
 
 
 ## Dependencies
-Dependencies are listed in the **requirements.yml** file. Use `ansible-galaxy install ./requirements.yml --force` for installation.
+Dependencies are listed in the **requirements.yml** file.<br>
+Use `ansible-galaxy install ./requirements.yml --force` for installation.<br>
 If this role is used in other playbooks or Ansible projects, the URL of this role must be added to the `requirements.yml` file. Using the above command, the role will be placed in the correct folder structure.
 
 
@@ -94,6 +88,7 @@ When using this role in other playbooks or Ansible projects:
      vars:
        action : install
 ```
+
 
 When used as a stand-alone Ansible project:
 ```
