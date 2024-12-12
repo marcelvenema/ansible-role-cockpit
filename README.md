@@ -1,28 +1,18 @@
 # RedHat Cockpit
 
-<table border="0">
-  <tr>
-    <td width="160px" valign="top"><img src="media/icon_cockpit.png" align="left" height="128" width="128" /></td>
-    <td>Ansible role for installation and configuration of Redhat Cockpit, a web-based UI for managing Redhat servers.<br/> 
-        If detected, plugins for Podman and KVM virtual machines are automatically installed.<br/>
-        The UI is accessible after installation via `https://<servername/ip>:9090`<br/>
-        <br/>
-        Official website: `https://project-cockpit.org`<br/>
-        <br/>
-    </td>
-  </tr>
-</table>
+| ![Cockpit Icon](media/icon_cockpit.png) | Ansible role for installation and configuration of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://<servername/ip>:9090`<br/><br/>Official website: `https://project-cockpit.org` |
+|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
-# Diensten:
+# Actions:
 
 
-action: **install**<br/>
-Installatie van laatste Cockpit versie. Basis configuratie van Cockpit.<br/>
-variablen:<br/>
-<kbd>cockpit_branding_logo</kbd> (optioneel) : Custom logo bij login pagina.<br/>
-<kbd>cockpit_branding_banner</kbd> (optioneel) : Banner tekstbestand bij login pagina.<br/>
+action: **install**
+Installation of the latest Cockpit version. Basic configuration of Cockpit.  
+variables:<br/>
+<kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br/>
+<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.<br/>
 
-Voorbeeld:
+Example:
 ```
 - name: Install and configure RedHat Cockpit
   hosts: localhost
@@ -35,14 +25,14 @@ Voorbeeld:
 <br/>
 
 
-action: **uninstall**<br/>
-De-installatie van RedHat Cockpit. Verwijderen configuratie folder.<br/>
-variablen:<br/>
-<kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
+action: **uninstall**
+Uninstallation of RedHat Cockpit. Removal of configuration folder.<br/>
+variables:<br/>
+<kbd>(none)</kbd> : No variables required.<br/>
 
-Voorbeeld:
+Example:
 ```
-- name: De-install RedHat Cockpit
+- name: Uninstall RedHat Cockpit
   hosts: localhost
   roles:
    - role: cockpit
@@ -54,19 +44,19 @@ Voorbeeld:
 
 
 action: **configure**<br/>
-Her-configuratie van RedHat Cockpit. `ROADMAP`.<br/>
-variablen:<br/>
-<kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
+Reconfiguration of RedHat Cockpit. `ROADMAP`.<br/>
+variables:<br/>
+<kbd>(none)</kbd> : No variables required.<br/>
 <br/>
 <br/>
 
 
 action: **update**<br/>
-Update van RedHat Cockpit.<br/>
-variablen:<br/>
-<kbd>(geen)</kbd> : Geen variabelen benodigd.<br/>
+Update of RedHat Cockpit.<br/>
+variables:<br/>
+<kbd>(none)</kbd> : No variables required.<br/>
 
-Voorbeeld:
+Example:
 ```
 - name: Update RedHat Cockpit
   hosts: localhost
@@ -81,31 +71,31 @@ Voorbeeld:
 ***
 
 - **changelog**<br/>
-  Wijzigingen logboek.<br/>
-  Zie [changelog](CHANGELOG.md)<br/>
+  Change log.<br/>
+  See [changelog](CHANGELOG.md)<br/>
 
 
 
 - **roadmap**<br/>
-  Visie en toekomstige ontwikkelingen.<br/>
-  Zie [roadmap](ROADMAP.md)<br/>
+  Vision and future developments.<br/>
+  See [roadmap](ROADMAP.md)<br/>
 
 ***
 
-## Voorbereidingen
-(geen).<br/>
+## Preparations
+(none).<br/>
 
 
-## Afhankelijkheden
-Afhankelijkheden zijn benoemd in het **requirements.yml** bestand. Gebruik `ansible-galaxy install ./requirements.yml --force` voor installatie.<br/>
+## Dependencies
+Dependencies are listed in the **requirements.yml** file. Use `ansible-galaxy install ./requirements.yml --force` for installation.<br/>
 
-Indien deze role in andere playbooks of Ansible projecten wordt gebruikt, dient de URL van deze rol te worden toegevoegd aan het `requirements.yml` bestand. Via bovenstaand command wordt de rol dan in de juiste folderstructuur geplaatst.<br/>
+If this role is used in other playbooks or Ansible projects, the URL of this role must be added to the `requirements.yml` file. Using the above command, the role will be placed in the correct folder structure.<br/>
 <br/>
 
-## Installatie en configuratie
-Installatie via de action variabele <kbd>install</kbd>. (Her-)configuratie via de action variabele <kbd>configure</kbd>.<br/>
+## Installation and configuration
+Installation via the action variable <kbd>install</kbd>. (Re-)configuration via the action variable <kbd>configure</kbd>.<br/>
 
-Bij gebruik van deze rol in andere playbooks of Ansible projecten:<br/>
+When using this role in other playbooks or Ansible projects:<br/>
 ```
 - name: Install and configure RedHat Cockpit
   hosts: localhost
@@ -116,7 +106,7 @@ Bij gebruik van deze rol in andere playbooks of Ansible projecten:<br/>
 ```
 <br/>
 
-Bij gebruik als stand-alone Ansible project:<br/>
+When used as a stand-alone Ansible project:<br/>
 ```
 - name: Install and configure RedHat Cockpit
   hosts: localhost
@@ -129,13 +119,13 @@ Bij gebruik als stand-alone Ansible project:<br/>
 <br/>
 
 
-## Overige informatie
-De UI is bereikbaar via `https://<servernaam/ip>:9090`. Gebruikersnaam voor login dient lid te zijn van lokale administrator groep. 
+## Additional information
+The UI is accessible via `https://<servername/ip>:9090`. The username for login must be a member of the local administrator group.
 
 
-## Licentie
+## License
 MIT
 
 
-## Auteur
+## Author
 Marcel Venema
