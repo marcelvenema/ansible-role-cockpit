@@ -5,12 +5,12 @@
 
 # Actions:
 
-
 action: **install**
 Installation of the latest Cockpit version. Basic configuration of Cockpit.
 variables:
 <kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.
-<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.
+<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.  
+
 
 ```
 - name: Install and configure RedHat Cockpit
