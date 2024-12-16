@@ -1,7 +1,9 @@
 # role: RedHat Cockpit
 
-| ![Cockpit Icon](media/icon_cockpit.png) | Ansible role for installation and configuration of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://<servername/ip>:9090`<br><br>Official website: `https://project-cockpit.org`
+| ![Cockpit Icon](media/icon_cockpit.png) | Ansible role for installation, configuration, usage and management of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://<servername/ip>:9090`<br><br>Official website: `https://project-cockpit.org`
 |---|---|
+
+[Design Ansible role Cockpit](docs/DESIGN.md)<br>
 
 # Actions:
 
