@@ -81,11 +81,13 @@
 
 # Enable Cockpit firewall
 - name: Allow Cockpit service through the firewall
-  ansible.posix.firewalld:
-    service: cockpit
-    permanent: true
-    state: enabled
-    immediate: true
+  ansible.builtin.command:
+    cmd: firewall-cmd --permanent --add-service=cockpit
+
+# Reload firewall
+- name: Reload firewall service
+  ansible.builtin.command:
+    cmd: firewall-cmd --reload
 
 #########################################################
 ## Configuration                                       ##
