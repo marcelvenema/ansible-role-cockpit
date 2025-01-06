@@ -1,11 +1,24 @@
 # role: RedHat Cockpit
 
-| ![Cockpit Icon](media/icon_cockpit.png) | Ansible role for installation, configuration, usage and management of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://<servername/ip>:9090`<br><br>Official website: `https://project-cockpit.org`
-|---|---|
+<table style="border:0px; width:100%"><tr><td width=160px valign=top><img src="media/icon_cockpit.png" alt="Cockpit icon" width=128 height=128></td>
+<td>
+Ansible role for installation, configuration, usage and management of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://<servername/ip>:9090`<br><br>Official website: `https://project-cockpit.org`<br><br>
+</td>
+</tr></table>
 
-[Design Ansible role Cockpit](docs/DESIGN.md)<br>
+Ansible role Cockpit : [Design](docs/DESIGN.md)  |  [Examples](examples)  |  [Test](molecule)  |  [Issues]()  |<br>
+Latest version:
 
 # Actions:
+
+<table style="border:0px; width:100%">
+<tr><th>Deployment</th><th>Administration</th></tr>
+<tr>
+  <td valign=top>install<br>uninstall<br>update</td>
+  <td valign=top>configure<br>start<br>stop<br></td>
+</tr></table>
+
+## Deployment
 
 action: **install**<br>
 Installation of the latest Cockpit version. Basic configuration of Cockpit.<br>
@@ -38,11 +51,6 @@ variables:<br>
        action : uninstall
 ```
 
-action: **configure**<br>
-Reconfiguration of RedHat Cockpit. `ROADMAP`.<br>
-variables:<br>
-<kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br>
-<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.<br>
 
 action: **update**<br>
 Update of RedHat Cockpit.<br>
@@ -58,6 +66,55 @@ variables:<br>
      vars:
        action : update
 ```
+
+
+## Administration
+
+action: **start**<br>
+Start of Cockpit service. `ROADMAP`.<br>
+variables:<br>
+<kbd>(none)</kbd> : No variables required.<br>
+
+```
+- name: Start Cockpit service
+  hosts: localhost
+  roles:
+   - role: cockpit
+     vars:
+       action : start
+```
+
+
+action: **stop**<br>
+Stop of Cockpit service. `ROADMAP`.<br>
+variables:<br>
+<kbd>(none)</kbd> : No variables required.<br>
+
+```
+- name: Stop Cockpit service
+  hosts: localhost
+  roles:
+   - role: cockpit
+     vars:
+       action : stop
+```
+
+
+action: **configure**<br>
+Reconfiguration of RedHat Cockpit. `ROADMAP`.<br>
+variables:<br>
+<kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br>
+<kbd>cockpit_branding_banner</kbd> (optional) : Banner text file on the login page.<br>
+
+```
+- name: Configure Cockpit service
+  hosts: localhost
+  roles:
+   - role: cockpit
+     vars:
+       action : configure
+```
+
 
 ***
 

@@ -45,6 +45,7 @@
 
 # Install cockpit packages
 - name: Install Cockpit packages
+  become: true
   ansible.builtin.package:
     name:
       - cockpit
@@ -58,6 +59,7 @@
 
 # Install Cockpit Podman packages
 - name: Install Cockpit Podman packages if Podman is installed
+  become: true
   ansible.builtin.package:
     name:
       - cockpit-podman
@@ -66,14 +68,24 @@
 
 # Install Cockpit KVM packages
 - name: Install Cockpit KVM packages if not a guest
+  become: true
   ansible.builtin.package:
     name:
       - cockpit-machines
     state: present
   when: ansible_virtualization_role != 'guest'
 
+# Install Cockpit Files packages
+- name: Install Cockpit Files packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - cockpit-files
+    state: present
+
 # Enable Cockpit service
 - name: Enable and start the Cockpit service
+  become: true
   ansible.builtin.systemd:
     name: cockpit.socket
     state: started
@@ -81,11 +93,13 @@
 
 # Enable Cockpit firewall
 - name: Allow Cockpit service through the firewall
+  become: true
   ansible.builtin.command:
     cmd: firewall-cmd --permanent --add-service=cockpit
 
 # Reload firewall
 - name: Reload firewall service
+  become: true
   ansible.builtin.command:
     cmd: firewall-cmd --reload
 

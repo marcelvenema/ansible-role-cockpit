@@ -14,6 +14,7 @@
 #########################################################
 
 - name: Add custom logo to Cockpit login page...
+  become: true
   when: cockpit_branding_logo is defined
   block: 
 
@@ -35,6 +36,7 @@
 
 - name: Add custom banner to Cockpit login page...
   when: cockpit_branding_banner is defined
+  become: true
   block:
 
     # Copy banner to Cockpit configuration folder
@@ -65,6 +67,7 @@
 
 # Restart Cockpit service
 - name: Restart Cockpit service...
+  become: true
   ansible.builtin.systemd:
     name: cockpit.socket
     state: restarted

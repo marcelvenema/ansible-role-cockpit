@@ -1,7 +1,0 @@
-- name: Install and configure RedHat Cockpit (no roles)...
-  hosts: localhost
-  tasks:
-
-    - name: Install RedHat Cockpit...
-      ansible.builtin.include_tasks:
-        file: tasks/install.yml
