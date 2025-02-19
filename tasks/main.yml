@@ -1,5 +1,9 @@
 ---
 
+#########################################################
+## Main module for RedHat Cockpit Ansible role         ##
+#########################################################
+
 # Show message
 - name: Show action message
   ansible.builtin.debug:
@@ -7,7 +11,7 @@
 
 # If action variable is not defined, gather status of the service and set action variable  
 - name: Gather action variable status...
-  ansible.builtin.include_tasks: get_status.yml
+  ansible.builtin.include_tasks: set_action.yml
   when: action is not defined
 
 # Assert that action is in actions
@@ -18,8 +22,13 @@
     fail_msg: "The action '{{ action }}' is not in the list of valid actions..."
     quiet: true
 
-# -------------------------------------------------------
+# TODO: Send message to Kafka bus
+- name: Publish message to Kafka bus...
+  ansible.builtin.debug:
+    msg: "TODO: Publish message to Kafka bus..."
+  when: kafka_bootstrap_servers is defined 
 
+# -------------------------------------------------------
 - name: Start install action...
   ansible.builtin.include_tasks: install.yml
   when: action == "install"
@@ -43,3 +52,4 @@
 - name: Start stop action...
   ansible.builtin.include_tasks: stop.yml
   when: action == "stop"
+# -------------------------------------------------------
