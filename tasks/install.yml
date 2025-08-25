@@ -30,7 +30,7 @@
 # Run uninstall if service is running
 - name: Uninstall Cockpit service if it is currently running
   ansible.builtin.include_tasks: uninstall.yml
-  when: 
+  when:
     - '"cockpit" in ansible_facts.packages'
     - uninstall is defined
     - uninstall == true
@@ -47,9 +47,9 @@
 - name: Install Cockpit packages
   become: true
   ansible.builtin.package:
-    name:
-      - cockpit
+    name: "{{ item }}"
     state: present
+  loop: "{{ cockpit_vars | dict2items | selectattr('key', 'equalto', 'packages') | map(attribute='value') | list }}"
 
 # Check if Podman is installed
 - name: Verify if Podman is installed

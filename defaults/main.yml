@@ -1,1 +1,44 @@
 ---
+
+#########################################################
+## Cockpit defaults                                    ##
+#########################################################
+
+# default role variables for the cockpit role
+cockpit:
+  # address is the URL to connect to the Cockpit server.
+  address: ""
+  # username is the username to connect to the Cockpit server.
+  username: "ucadmin"
+  # password is the password to connect to the Cockpit server.
+  password: ""
+  # token is the token used to authenticate to the Cockpit server.
+  token: ""
+
+  # packages is a list of additional packages to install.
+  packages: [ "cockpit", "dnf-automatic" ]
+
+  # metadata contains information about the role.
+  metadata:
+    name: "cockpit"
+    description: "Cockpit Ansible role."
+    version: "1.0.0"
+    maintainer: ""
+    maintainer_email: ""
+
+  # application contains the configuration for the application server.
+  application:
+    # validate_certs configures if the certificate of the application server should be validated. 
+    validate_certs: false
+
+  # secrets contains the configuration for the vault used for storing secrets and configuration data.
+  secrets:
+    # secret_name is the unique id of the vault used for storing secrets and configuration data.
+    # default is {{ansible_fqdn }}.
+    secret_name: "{{ ansible_fqdn | replace('.', '-') }}"
+    # secret_engine_name is the name of the vault used for storing secrets and configuration data.
+    # example: "cisco-callmanager", "nexus-repository".
+    secret_engine_name: "devices"
+    # secret_engine_description is the description of the vault used for storing secrets and
+    # configuration data. example: "Secrets for Sonatype Nexus Repository.".
+    secret_engine_description: "Secrets for Cockpit."

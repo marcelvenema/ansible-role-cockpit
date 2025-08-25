@@ -22,6 +22,18 @@
     fail_msg: "The action '{{ action }}' is not in the list of valid actions..."
     quiet: true
 
+# Merge role defaults with cockpit, include nested variables
+# Nested merge does not work well, so use workaround to combine variables
+- name: Gather defaults (cockpit)...
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/defaults/main.yml"
+    name: cockpit_defaults
+
+# Merge role defaults, include nested variables
+- name: Merge role defaults with collected variables...
+  ansible.builtin.set_fact:
+    cockpit_vars: "{{ cockpit_defaults.cockpit | combine(cockpit | default({}), recursive=true) }}"
+
 # TODO: Send message to Kafka bus
 - name: Publish message to Kafka bus...
   ansible.builtin.debug:
