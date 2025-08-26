@@ -1,21 +1,21 @@
 ---
 
 #########################################################
-## Gather information                                  ##
+## Cockpit install action                              ##
 #########################################################
 
 # Gather installed packages
-- name: Gather facts about installed packages
+- name: Gather facts about installed packages...
   ansible.builtin.package_facts:
     manager: auto
 
 # Set action_parameters variable to pameter list in actions where key is equal to action
 - name: "Gather parameters for the specified action ({{ action }})"
   set_fact:
-    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters }}"
+    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters | default({}) }}"
 
 # Check if cockpit service is running
-- name: Check the status of the Cockpit service
+- name: Check the status of the Cockpit service...
   ansible.builtin.systemd:
     name: cockpit.socket
   register: cockpit_service_status
@@ -28,46 +28,46 @@
 #########################################################
 
 # Run uninstall if service is running
-- name: Uninstall Cockpit service if it is currently running
+- name: Uninstall Cockpit service...
   ansible.builtin.include_tasks: uninstall.yml
   when:
-    - '"cockpit" in ansible_facts.packages'
-    - uninstall is defined
-    - uninstall == true
+    - ansible_facts.packages.cockpit is defined
+    - uninstall | default(false)  
 
 #########################################################
 ## Pre-installation                                    ##
 #########################################################
 
+# Install cockpit packages
+- name: Install Cockpit packages...
+  become: true
+  ansible.builtin.package:
+    name: "{{ cockpit_vars.rpm_packages }}"
+    state: present
+
 #########################################################
 ## Installation                                        ##
 #########################################################
 
-# Install cockpit packages
-- name: Install Cockpit packages
-  become: true
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ cockpit_vars | dict2items | selectattr('key', 'equalto', 'packages') | map(attribute='value') | list }}"
-
 # Check if Podman is installed
-- name: Verify if Podman is installed
+- name: Verify if Podman is installed...
   ansible.builtin.command: podman --version
   register: podman_version_output
+  changed_when: false
+  failed_when: false
   ignore_errors: true
 
 # Install Cockpit Podman packages
-- name: Install Cockpit Podman packages if Podman is installed
+- name: Install Cockpit Podman packages...
   become: true
   ansible.builtin.package:
     name:
       - cockpit-podman
     state: present
-  when: podman_version_output
+  when: ansible_facts.packages.podman is defined
 
 # Install Cockpit KVM packages
-- name: Install Cockpit KVM packages if not a guest
+- name: Install Cockpit KVM packages...
   become: true
   ansible.builtin.package:
     name:
@@ -76,39 +76,43 @@
   when: ansible_virtualization_role != 'guest'
 
 # Install Cockpit Files packages
-- name: Install Cockpit Files packages
+- name: Install Cockpit Files packages...
   become: true
   ansible.builtin.package:
     name:
       - cockpit-files
     state: present
+  when: ansible_facts.packages.podman is defined  
 
 # Enable Cockpit service
-- name: Enable and start the Cockpit service
+- name: Enable and start the Cockpit service...
   become: true
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: cockpit.socket
     state: started
-    enabled: true
 
 # Enable Cockpit firewall
-- name: Allow Cockpit service through the firewall
+- name: Allow Cockpit service through the firewall...
   become: true
-  ansible.builtin.command:
-    cmd: firewall-cmd --permanent --add-service=cockpit
+  ansible.posix.firewalld:
+    service: cockpit
+    permanent: true
+    state: enabled
+  when: '"firewalld" in ansible_facts.packages'
 
-# Reload firewall
-- name: Reload firewall service
+# Restart firewalld
+- name: Restart firewall service...
   become: true
-  ansible.builtin.command:
-    cmd: firewall-cmd --reload
+  ansible.builtin.systemd_service:
+    name: firewalld
+    state: restarted
 
 #########################################################
 ## Configuration                                       ##
 #########################################################
 
 # Configure Cockpit
-- name: Include Cockpit configuration tasks
+- name: Include Cockpit configuration tasks...
   ansible.builtin.include_tasks: configure.yml
   vars:
     action: "configure"
@@ -118,7 +122,7 @@
 #########################################################
 
 # Unset variables
-- name: Unset Cockpit service and Podman version variables
+- name: Unset variables...
   ansible.builtin.set_fact:
     cockpit_service_status: null
     podman_version_output: null

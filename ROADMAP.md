@@ -6,3 +6,9 @@
 ***
 
 # Roadmap
+
+
+- Enable automatic software update installation.
+- Enable SSL certificate webconsole.
+- Add extra host in webconsole for user podman.
+-

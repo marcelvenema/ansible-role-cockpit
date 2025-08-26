@@ -1,13 +1,8 @@
 ---
 
 #########################################################
-## Gather information                                  ##
+## Cockpit configure action                            ##
 #########################################################
-
-# Set `action_parameters` variable to parameter list in actions where key is equal to `action`
-- name: "Gather action parameters for action ({{ action }})..."
-  set_fact:
-    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters }}"
 
 #########################################################
 ## Branding                                            ##
@@ -68,13 +63,12 @@
 # Restart Cockpit service
 - name: Restart Cockpit service...
   become: true
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: cockpit.socket
     state: restarted
 
 # Unset variables
 - name: Unset variables...
   ansible.builtin.set_fact:
-    action_parameters: null
     cockpit_branding_logo: null
     cockpit_branding_banner: null

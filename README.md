@@ -2,7 +2,7 @@
 
 <table style="border:0px; width:100%"><tr><td width=160px valign=top><img src="media/icon_cockpit.png" alt="Cockpit icon" width=128 height=128></td>
 <td>
-Ansible role for installation, configuration, usage and management of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://(servername/ip-address):9090`<br><br>Official website: `https://project-cockpit.org`<br><br>
+Ansible role for installation, configuration, usage and management of RedHat Cockpit, a web-based UI for managing RedHat servers. If detected, plugins for Podman and KVM virtual machines are automatically installed. The UI is accessible after installation via `https://(servername/ip-address):9090`<br><br>Official website: `https://cockpit-project.org`<br><br>
 </td>
 </tr></table>
 

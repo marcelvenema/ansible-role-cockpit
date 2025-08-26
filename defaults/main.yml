@@ -15,14 +15,14 @@ cockpit:
   # token is the token used to authenticate to the Cockpit server.
   token: ""
 
-  # packages is a list of additional packages to install.
-  packages: [ "cockpit", "dnf-automatic" ]
+  # rpm_packages is a list of additional packages to install.
+  rpm_packages: [ "cockpit", "cockpit-storaged", "dnf-automatic" ]
 
   # metadata contains information about the role.
   metadata:
     name: "cockpit"
     description: "Cockpit Ansible role."
-    version: "1.0.0"
+    version: "1.0.1"
     maintainer: ""
     maintainer_email: ""
 

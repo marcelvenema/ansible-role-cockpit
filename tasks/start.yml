@@ -1,13 +1,13 @@
+---
 
-##############################
-## Start                    ##
-##############################
+#########################################################
+## Cockpit start action                                ##
+#########################################################
 
-# Show information message
-- name: Information message
-  ansible.builtin.debug:
-    msg: "This part is not (yet) implemented."
-
-# Stop playbook
-- name: Stop playbook
-  ansible.builtin.meta: end_play
+# Start Cockpit service
+- name: Ensure Cockpit service is enabled and started...
+  become: true
+  ansible.builtin.systemd:
+    name: cockpit.socket
+    state: started
+    enabled: true

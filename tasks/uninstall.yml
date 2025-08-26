@@ -1,23 +1,28 @@
+---
 
-##############################
-## Uninstall                ##
-##############################
+#########################################################
+## Cockpit uninstall action                            ##
+#########################################################
 
 # Stop Cockpit service
-- name: Stop Cockpit service
+- name: Stop Cockpit service...
+  become: true
   ansible.builtin.systemd:
     name: cockpit.socket
     state: stopped
     enabled: false
 
 # Delete Cockpit configuration
-- name: Delete Cockpit configuration
+- name: Delete Cockpit configuration...
+  become: true
   ansible.builtin.file:
     path: /etc/cockpit
     state: absent
+  when: remove_data | default(true)
 
 # Remove Cockpit package
-- name: Remove Cockpit package
+- name: Remove Cockpit package...
+  become: true
   ansible.builtin.package:
     name: cockpit
     state: absent
