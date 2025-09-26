@@ -16,7 +16,7 @@ cockpit:
   token: ""
 
   # rpm_packages is a list of additional packages to install.
-  rpm_packages: [ "cockpit", "cockpit-storaged", "dnf-automatic" ]
+  rpm_packages: ["cockpit", "cockpit-storaged", "dnf-automatic", "kpatch", "kpatch-dnf"]
 
   # metadata contains information about the role.
   metadata:
