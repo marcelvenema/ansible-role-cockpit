@@ -84,6 +84,15 @@
     state: present
   when: ansible_facts.packages.podman is defined  
 
+# Install Cockpit Storage packages
+- name: Install Cockpit Storage packages...
+  become: true
+  ansible.builtin.package:
+    name:
+      - cockpit-storaged
+    state: present
+  when: ansible_facts.packages.podman is defined  
+
 # Enable Cockpit service
 - name: Enable and start the Cockpit service...
   become: true
