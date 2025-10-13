@@ -1,6 +1,7 @@
-
-- name: Restart Cockpit
+---
+# Correct handler to restart Cockpit socket (primary activation unit)
+- name: Restart cockpit
+  become: true
   ansible.builtin.systemd:
-    name: cockpit
+    name: cockpit.socket
     state: restarted
-  notify: reload cockpit

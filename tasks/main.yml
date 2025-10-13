@@ -1,26 +1,7 @@
 ---
-
 #########################################################
 ## Main module for RedHat Cockpit Ansible role         ##
 #########################################################
-
-# Show message
-- name: Show action message
-  ansible.builtin.debug:
-    msg: "Starting role {{ role_name }}... action: {{ action }}."
-
-# If action variable is not defined, gather status of the service and set action variable  
-- name: Gather action variable status...
-  ansible.builtin.include_tasks: set_action.yml
-  when: action is not defined
-
-# Assert that action is in actions
-- name: "Verify valid action ({{ action }})..."
-  ansible.builtin.assert:
-    that:
-      - action in (actions | map('dict2items') | map('first') | map(attribute='key') | list)
-    fail_msg: "The action '{{ action }}' is not in the list of valid actions..."
-    quiet: true
 
 # Merge role defaults with cockpit, include nested variables
 # Nested merge does not work well, so use workaround to combine variables
@@ -34,11 +15,29 @@
   ansible.builtin.set_fact:
     cockpit_vars: "{{ cockpit_defaults.cockpit | combine(cockpit | default({}), recursive=true) }}"
 
+# If action variable is not defined, gather status of the service and set action variable  
+- name: Gather action variable status...
+  ansible.builtin.include_tasks: set_action.yml
+  when: action is not defined
+
+# Show message
+- name: Show action message
+  ansible.builtin.debug:
+    msg: "Starting role {{ role_name }}... action: {{ action }}."
+
+# Assert that action is in actions
+- name: Verify valid action ({{ action }})...
+  ansible.builtin.assert:
+    that:
+      - action in (actions | map('dict2items') | map('first') | map(attribute='key') | list)
+    fail_msg: The action '{{ action }}' is not in the list of valid actions...
+    quiet: true
+
 # TODO: Send message to Kafka bus
 - name: Publish message to Kafka bus...
   ansible.builtin.debug:
     msg: "TODO: Publish message to Kafka bus..."
-  when: kafka_bootstrap_servers is defined 
+  when: kafka_bootstrap_servers is defined
 
 # -------------------------------------------------------
 - name: Start install action...

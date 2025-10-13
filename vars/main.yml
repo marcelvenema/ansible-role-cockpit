@@ -1,54 +1,54 @@
 ---
 
 actions:
-    - install:
-        description: "Install the latest version of Cockpit and perform basic configuration."
-        icon: "media/icon_cockpit.png"
-        parameters:
-            - uninstall:
-                description: "Uninstall existing Cockpit before installation."
-                required: false
-            - cockpit_branding_logo:
-                description: "URL/path to the logo for Cockpit branding."
-                required: false
-            - cockpit_branding_banner:
-                description: "URL/path to the banner for Cockpit branding."
-                required: false
+  - install:
+      description: Install the latest version of Cockpit and perform basic configuration.
+      icon: media/icon_cockpit.png
+      parameters:
+        - uninstall:
+            description: Uninstall existing Cockpit before installation.
+            required: false
+        - cockpit_branding_logo:
+            description: URL/path to the logo for Cockpit branding.
+            required: false
+        - cockpit_branding_banner:
+            description: URL/path to the banner for Cockpit branding.
+            required: false
 
-    - uninstall:
-        description: "Uninstall RedHat Cockpit and remove its configuration folder."
-        icon: "media/icon_cockpit.png"
-        parameters:
-            - remove_data:
-                description: "Remove all Cockpit data during uninstallation."
-                required: false
+  - uninstall:
+      description: Uninstall RedHat Cockpit and remove its configuration folder.
+      icon: media/icon_cockpit.png
+      parameters:
+        - remove_data:
+            description: Remove all Cockpit data during uninstallation.
+            required: false
 
-    - configure:
-        description: "Reconfigure RedHat Cockpit settings."
-        icon: "media/icon_cockpit.png"
-        parameters:
-            - cockpit_branding_logo:
-                description: "URL/path to the logo for Cockpit branding."
-                required: false
-            - cockpit_branding_banner:
-                description: "URL/path to the banner for Cockpit branding."
-                required: false
+  - configure:
+      description: Reconfigure RedHat Cockpit settings.
+      icon: media/icon_cockpit.png
+      parameters:
+        - cockpit_branding_logo:
+            description: URL/path to the logo for Cockpit branding.
+            required: false
+        - cockpit_branding_banner:
+            description: URL/path to the banner for Cockpit branding.
+            required: false
 
-    - start:
-        description: "Start the RedHat Cockpit service."
-        icon: "media/icon_start.png"
+  - start:
+      description: Start the RedHat Cockpit service.
+      icon: media/icon_start.png
 
-    - stop:
-        description: "Stop the RedHat Cockpit service."
-        icon: "media/icon_stop.png"
+  - stop:
+      description: Stop the RedHat Cockpit service.
+      icon: media/icon_stop.png
 
-    - update:
-        description: "Update RedHat Cockpit to the latest version."
-        icon: "media/icon_cockpit.png"
-        parameters:
-            - backup_config:
-                description: "Backup existing configuration before updating."
-                required: false
-            - notify_users:
-                description: "Notify users about the update."
-                required: false
+  - update:
+      description: Update RedHat Cockpit to the latest version.
+      icon: media/icon_cockpit.png
+      parameters:
+        - backup_config:
+            description: Backup existing configuration before updating.
+            required: false
+        - notify_users:
+            description: Notify users about the update.
+            required: false

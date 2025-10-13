@@ -1,5 +1,4 @@
 ---
-
 #########################################################
 ## Set action                                          ##
 #########################################################
@@ -14,7 +13,7 @@
 
 # Check if cockpit service is running
 - name: Check status of Cockpit service...
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: cockpit.socket
   register: cockpit_service_status
   changed_when: false
@@ -24,11 +23,12 @@
 # Set action variable when service is not running
 - name: Set action (start)...
   ansible.builtin.set_fact:
-    action: "start"
-  when: cockpit_service_status is defined and cockpit_service_status.status is defined and cockpit_service_status.status.ActiveState is defined and cockpit_service_status.status.ActiveState != 'active'
+    action: start
+  when: cockpit_service_status is defined and cockpit_service_status.status is defined and cockpit_service_status.status.ActiveState | default('inactive') != 
+    'active'
 
 # Set action to install if cockpit is not installed
 - name: Set action (install)...
   ansible.builtin.set_fact:
-    action: "install"
+    action: install
   when: "'cockpit' not in ansible_facts.packages"

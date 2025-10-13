@@ -9,20 +9,19 @@ cockpit:
   # address is the URL to connect to the Cockpit server.
   address: ""
   # username is the username to connect to the Cockpit server.
-  username: "ucadmin"
+  username: ucadmin
   # password is the password to connect to the Cockpit server.
   password: ""
   # token is the token used to authenticate to the Cockpit server.
   token: ""
 
   # rpm_packages is a list of additional packages to install.
-  rpm_packages: ["cockpit", "dnf-automatic", "kpatch", "kpatch-dnf"]
-
+  rpm_packages: [cockpit, dnf-automatic, kpatch, kpatch-dnf]
   # metadata contains information about the role.
   metadata:
-    name: "cockpit"
-    description: "Cockpit Ansible role."
-    version: "1.0.1"
+    name: cockpit
+    description: Cockpit Ansible role.
+    version: 1.0.1
     maintainer: ""
     maintainer_email: ""
 
@@ -38,7 +37,7 @@ cockpit:
     secret_name: "{{ ansible_fqdn | replace('.', '-') }}"
     # secret_engine_name is the name of the vault used for storing secrets and configuration data.
     # example: "cisco-callmanager", "nexus-repository".
-    secret_engine_name: "devices"
+    secret_engine_name: devices
     # secret_engine_description is the description of the vault used for storing secrets and
     # configuration data. example: "Secrets for Sonatype Nexus Repository.".
-    secret_engine_description: "Secrets for Cockpit."
+    secret_engine_description: Secrets for Cockpit.
