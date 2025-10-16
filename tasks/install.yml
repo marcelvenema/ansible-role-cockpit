@@ -11,7 +11,8 @@
 # Set action_parameters variable to pameter list in actions where key is equal to action
 - name: Gather parameters for the specified action ({{ action }})
   ansible.builtin.set_fact:
-    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters | default({}) }}"
+    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters | default({})
+      }}"
 
 # Check if cockpit service is running
 - name: Check the status of the Cockpit service...

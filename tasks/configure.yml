@@ -51,33 +51,33 @@
           [Session]
           Banner=/etc/issue.cockpit
 
-    # Configure dnf automatic updates
-    - name: Configure dnf automatic updates...
-      ansible.builtin.copy:
-        content: |
-          [commands]
-          apply_updates = yes
-          upgrade_type = security
+# Configure dnf automatic updates
+- name: Configure dnf automatic updates...
+  ansible.builtin.copy:
+    content: |
+      [commands]
+      apply_updates = yes
+      upgrade_type = security
+      [emitters]
+      emit_via = motd
+    dest: /etc/dnf/automatic.conf
+    mode: "0644"
 
-          [emitters]
-          emit_via = motd
-        dest: /etc/dnf/automatic.conf
+# Enable timer
+- name: Enable dnf-automatic timer...
+  become: true
+  ansible.builtin.service:
+    name: dnf-automatic.timer
+    state: started
+    enabled: true
 
-    # Enable timer
-    - name: Enable dnf-automatic timer...
-      become: true
-      ansible.builtin.service:
-        name: dnf-automatic.timer
-        state: started
-        enabled: true
-
-    # Enable kpatch service
-    - name: Enable kpatch service...
-      become: true
-      ansible.builtin.service:
-        name: kpatch.service
-        state: started
-        enabled: true
+# Enable kpatch service
+- name: Enable kpatch service...
+  become: true
+  ansible.builtin.service:
+    name: kpatch.service
+    state: started
+    enabled: true
 
 #########################################################
 ## Post-configuration                                  ##
