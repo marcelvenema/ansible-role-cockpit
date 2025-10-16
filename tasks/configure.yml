@@ -61,7 +61,7 @@
 
           [emitters]
           emit_via = motd
-        path: /etc/dnf/automatic.conf
+        dest: /etc/dnf/automatic.conf
 
     # Enable timer
     - name: Enable dnf-automatic timer...
