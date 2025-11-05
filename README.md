@@ -20,7 +20,7 @@ Latest version:
 
 ## Deployment
 
-action: **install**<br>
+action_type: **install**<br>
 Installation of the latest Cockpit version. Basic configuration of Cockpit.<br>
 variables:<br>
 <kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br>
@@ -33,11 +33,11 @@ variables:<br>
   roles:
    - role: cockpit
      vars:
-       action : install
+       action_type : install
 ```
 
 
-action: **uninstall**<br>
+action_type: **uninstall**<br>
 Uninstallation of RedHat Cockpit. Removal of configuration folder.<br>
 variables:<br>
 <kbd>remove_data</kbd> (optional) : Remove all Cockpit data during uninstallation.<br>
@@ -48,11 +48,11 @@ variables:<br>
   roles:
    - role: cockpit
      vars:
-       action : uninstall
+       action_type : uninstall
 ```
 
 
-action: **update**<br>
+action_type: **update**<br>
 Update of RedHat Cockpit.<br>
 variables:<br>
 <kbd>backup_config</kbd> (optional) : true/false. Backup configuration before update.<br>
@@ -64,13 +64,13 @@ variables:<br>
   roles:
    - role: cockpit
      vars:
-       action : update
+       action_type : update
 ```
 
 
 ## Administration
 
-action: **start**<br>
+action_type: **start**<br>
 Start of Cockpit service. `ROADMAP`.<br>
 variables:<br>
 <kbd>(none)</kbd> : No variables required.<br>
@@ -81,11 +81,11 @@ variables:<br>
   roles:
    - role: cockpit
      vars:
-       action : start
+       action_type : start
 ```
 
 
-action: **stop**<br>
+action_type: **stop**<br>
 Stop of Cockpit service. `ROADMAP`.<br>
 variables:<br>
 <kbd>(none)</kbd> : No variables required.<br>
@@ -96,11 +96,11 @@ variables:<br>
   roles:
    - role: cockpit
      vars:
-       action : stop
+       action_type : stop
 ```
 
 
-action: **configure**<br>
+action_type: **configure**<br>
 Reconfiguration of RedHat Cockpit. `ROADMAP`.<br>
 variables:<br>
 <kbd>cockpit_branding_logo</kbd> (optional) : Custom logo on the login page.<br>
@@ -112,7 +112,7 @@ variables:<br>
   roles:
    - role: cockpit
      vars:
-       action : configure
+       action_type : configure
 ```
 
 
@@ -139,7 +139,7 @@ If this role is used in other playbooks or Ansible projects, the URL of this rol
 
 
 ## Installation and configuration
-Installation via the action variable <kbd>install</kbd>. (Re-)configuration via the action variable <kbd>configure</kbd>.
+Installation via the action_type variable <kbd>install</kbd>. (Re-)configuration via the action_type variable <kbd>configure</kbd>.
 
 When using this role in other playbooks or Ansible projects:
 ```
@@ -148,7 +148,7 @@ When using this role in other playbooks or Ansible projects:
   roles:
    - role: cockpit
      vars:
-       action : install
+       action_type : install
 ```
 
 

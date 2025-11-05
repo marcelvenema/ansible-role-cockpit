@@ -16,21 +16,21 @@
     cockpit_vars: "{{ cockpit_defaults.cockpit | combine(cockpit | default({}), recursive=true) }}"
 
 # If action variable is not defined, gather status of the service and set action variable  
-- name: Gather action variable status...
-  ansible.builtin.include_tasks: set_action.yml
-  when: action is not defined
+- name: Gather action_type variable status...
+  ansible.builtin.include_tasks: set_action_type.yml
+  when: action_type is not defined
 
 # Show message
 - name: Show action message
   ansible.builtin.debug:
-    msg: "Starting role {{ role_name }}... action: {{ action }}."
+    msg: "Starting role {{ role_name }}... action: {{ action_type }}."
 
 # Assert that action is in actions
-- name: Verify valid action ({{ action }})...
+- name: Verify valid action ({{ action_type }})...
   ansible.builtin.assert:
     that:
-      - action in (actions | map('dict2items') | map('first') | map(attribute='key') | list)
-    fail_msg: The action '{{ action }}' is not in the list of valid actions...
+      - action_type in (actions | map('dict2items') | map('first') | map(attribute='key') | list)
+    fail_msg: The action '{{ action_type }}' is not in the list of valid actions...
     quiet: true
 
 # TODO: Send message to Kafka bus
@@ -42,25 +42,25 @@
 # -------------------------------------------------------
 - name: Start install action...
   ansible.builtin.include_tasks: install.yml
-  when: action == "install"
+  when: action_type == "install"
 
 - name: Start uninstall action...
   ansible.builtin.include_tasks: uninstall.yml
-  when: action == "uninstall"
+  when: action_type == "uninstall"
 
 - name: Start configure action...
   ansible.builtin.include_tasks: configure.yml
-  when: action == "configure"
+  when: action_type == "configure"
 
 - name: Start update action...
   ansible.builtin.include_tasks: update.yml
-  when: action == "update"
+  when: action_type == "update"
 
 - name: Start start action...
   ansible.builtin.include_tasks: start.yml
-  when: action == "start"
+  when: action_type == "start"
 
 - name: Start stop action...
   ansible.builtin.include_tasks: stop.yml
-  when: action == "stop"
+  when: action_type == "stop"
 # -------------------------------------------------------

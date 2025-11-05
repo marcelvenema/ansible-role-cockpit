@@ -1,10 +1,10 @@
 ---
 #########################################################
-## Set action                                          ##
+## Set action_type                                     ##
 #########################################################
-# If action variable is not defined, gather status of the service
-# If service not installed, set action to install.
-# If the service is not started, set action to start.
+# If action_type variable is not defined, gather status of the service
+# If service not installed, set action_type to install.
+# If the service is not started, set action_type to start.
 
 # Gather installed packages
 - name: Gather installed packages...
@@ -23,12 +23,12 @@
 # Set action variable when service is not running
 - name: Set action (start)...
   ansible.builtin.set_fact:
-    action: start
+    action_type: start
   when: cockpit_service_status is defined and cockpit_service_status.status is defined and cockpit_service_status.status.ActiveState | default('inactive') != 
     'active'
 
 # Set action to install if cockpit is not installed
 - name: Set action (install)...
   ansible.builtin.set_fact:
-    action: install
+    action_type: install
   when: "'cockpit' not in ansible_facts.packages"
