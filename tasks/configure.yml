@@ -9,7 +9,7 @@
 
 - name: Add custom logo to Cockpit login page...
   become: true
-  when: cockpit_branding_logo is defined
+  when: cockpit_branding_logo is defined and cockpit_branding_logo != ""
   block:
     # Copy branding from template to folder
     - name: Configure Cockpit branding...
@@ -26,7 +26,7 @@
         mode: "0644"
 
 - name: Add custom banner to Cockpit login page...
-  when: cockpit_branding_banner is defined
+  when: cockpit_branding_banner is defined and cockpit_branding_banner != ""
   become: true
   block:
     # Copy banner to Cockpit configuration folder
@@ -43,13 +43,13 @@
         state: directory
         mode: "0755"
 
-    # Ensure banner= directive is present in Cockpit configuration file
-    - name: Ensure banner= directive is present in Cockpit configuration file...
-      ansible.builtin.blockinfile:
-        path: /etc/cockpit/cockpit.conf
-        block: |
-          [Session]
-          Banner=/etc/issue.cockpit
+    # # Ensure banner= directive is present in Cockpit configuration file
+    # - name: Ensure banner= directive is present in Cockpit configuration file...
+    #   ansible.builtin.blockinfile:
+    #     path: /etc/cockpit/cockpit.conf
+    #     block: |
+    #       [Session]
+    #       Banner=/etc/issue.cockpit
 
 # Configure dnf automatic updates
 - name: Configure dnf automatic updates...

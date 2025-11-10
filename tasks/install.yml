@@ -42,8 +42,9 @@
 - name: Install Cockpit packages...
   become: true
   ansible.builtin.package:
-    name: "{{ cockpit_vars.rpm_packages }}"
+    name: "{{ item }}"
     state: present
+  loop: "{{ cockpit_rpm_packages }}"
 
 #########################################################
 ## Installation                                        ##
@@ -118,7 +119,6 @@
     name: firewalld
     state: reloaded
   when:
-    - cockpit_vars.manage_firewalld | default(true)
     - '"firewalld" in ansible_facts.packages'
 
 #########################################################
